@@ -1,5 +1,7 @@
 # upload_image_to_server
 
+- [Read My article on Medium](https://agnelselvan007.medium.com/flutter-upload-image-to-server-from-mobile-d9416f1db972)
+
 A new Flutter project.
 
 ## Getting Started
