@@ -136,6 +136,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       if (Platform.isMacOS) {
                         downloadNewVersion(versionJson["macos_file_name"]);
                       }
+                      if (Platform.isWindows) {
+                        downloadNewVersion(versionJson["windows_file_name"]);
+                      }
                     },
                     icon: const Icon(Icons.update),
                     label: const Text("Update")),
