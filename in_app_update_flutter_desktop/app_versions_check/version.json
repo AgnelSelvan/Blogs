@@ -5,5 +5,7 @@
         "Added New Screen",
         "Minor Bug Fixes"
     ],
-    "file_name": "installers/macos/in_app_update_flutter.dmg"
+    "macos_file_name": "installers/macos/in_app_update_flutter.dmg",
+    "windows_file_name": "",
+    "linux_file_name": ""
 }
