@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:in_app_update_flutter_desktop/application.dart';
 
 void main() {
@@ -30,6 +33,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  Future<Map<String, dynamic>> loadJsonFromGithub() async {
+    final response = await http.read(Uri.parse("uri"));
+    return jsonDecode(response);
+  }
+
   showUpdateDialog() {}
   void _checkForUpdates() {
     showUpdateDialog();
