@@ -83,9 +83,6 @@ class _MyHomePageState extends State<MyHomePage> {
     if (Platform.isWindows) {
       await openExeFile(downloadedFilePath);
     }
-    // if (Platform.isMacOS) {
-    //   await openDMGFile(downloadedFilePath);
-    // }
     isDownloading = false;
     setState(() {});
   }
