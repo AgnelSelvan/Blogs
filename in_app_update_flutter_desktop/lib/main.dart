@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -39,10 +40,23 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   bool isDownloading = false;
   double downloadProgress = 0;
+  String downloadedFilePath = "";
   Future<Map<String, dynamic>> loadJsonFromGithub() async {
     final response = await http.read(Uri.parse(
         "https://raw.githubusercontent.com/AgnelSelvan/Blogs/main/in_app_update_flutter_desktop/app_versions_check/version.json"));
     return jsonDecode(response);
+  }
+
+  Future<void> openExeFile(String filePath) async {
+    await Process.start(filePath, ["-t", "-l", "1000"]).then((value) {});
+  }
+
+  Future<void> openDMGFile(String filePath) async {
+    await Process.start(
+        "MOUNTDEV=\$(hdiutil mount '$filePath' | awk '/dev.disk/{print\$1}')",
+        []).then((value) {
+      debugPrint("Value: $value");
+    });
   }
 
   Future downloadNewVersion(String appPath) async {
@@ -51,20 +65,27 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {});
 
     final dio = Dio();
-    final fileDownloadPath =
+
+    downloadedFilePath =
         "${(await getApplicationDocumentsDirectory()).path}/$fileName";
-    //https://github.com/AgnelSelvan/AgnelSelvan.github.io/blob/main/annai_store/annai-store.exe?raw=true
+
     await dio.download(
       "https://github.com/AgnelSelvan/Blogs/raw/main/in_app_update_flutter_desktop/app_versions_check/$appPath",
-      fileDownloadPath,
+      downloadedFilePath,
       onReceiveProgress: (received, total) {
         final progress = (received / total) * 100;
         debugPrint('Rec: $received , Total: $total, $progress%');
-        downloadProgress = double.parse(progress.toStringAsFixed(0));
+        downloadProgress = double.parse(progress.toStringAsFixed(1));
         setState(() {});
       },
     );
-    // await openExeFile(fileDownloadPath);
+    debugPrint("File Downloaded Path: $downloadedFilePath");
+    if (Platform.isWindows) {
+      await openExeFile(downloadedFilePath);
+    }
+    // if (Platform.isMacOS) {
+    //   await openDMGFile(downloadedFilePath);
+    // }
     isDownloading = false;
     setState(() {});
   }
@@ -111,7 +132,10 @@ class _MyHomePageState extends State<MyHomePage> {
               if (version > ApplicationConfig.currentVersion)
                 TextButton.icon(
                     onPressed: () {
-                      downloadNewVersion(versionJson["file_name"]);
+                      Navigator.pop(context);
+                      if (Platform.isMacOS) {
+                        downloadNewVersion(versionJson["macos_file_name"]);
+                      }
                     },
                     icon: const Icon(Icons.update),
                     label: const Text("Update")),
@@ -135,10 +159,15 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: Stack(
           children: [
-            Center(
-              child: Text(
-                'Current Version is ${ApplicationConfig.currentVersion}',
-              ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Current Version is ${ApplicationConfig.currentVersion}',
+                ),
+                if (!isDownloading && downloadedFilePath != "")
+                  Text("File Downloaded in $downloadedFilePath")
+              ],
             ),
             if (isDownloading)
               Container(
@@ -147,8 +176,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 color: Colors.black.withOpacity(0.3),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    CircularProgressIndicator(),
+                  children: [
+                    const CircularProgressIndicator(),
+                    Text(downloadProgress.toStringAsFixed(1) + " %")
                   ],
                 ),
               )
