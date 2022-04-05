@@ -5,4 +5,6 @@
 ### Outputs
 
 * Before
-  <img src="outputs/1.gif"  />
+  <img src="outputs/before.gif"  />
+* After
+  <img src="outputs/after.gif"  />
