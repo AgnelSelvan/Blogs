@@ -1,0 +1,46 @@
+PODS:
+  - Flutter (1.0.0)
+  - flutter_local_notifications (0.0.1):
+    - Flutter
+  - QuickBlox (2.17.10)
+  - Quickblox-WebRTC (2.7.6):
+    - QuickBlox (>= 2.7)
+  - quickblox_sdk (0.0.1-alpha):
+    - Flutter
+    - QuickBlox (~> 2.17.10)
+    - Quickblox-WebRTC (~> 2.7.6)
+  - shared_preferences_ios (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - flutter_local_notifications (from `.symlinks/plugins/flutter_local_notifications/ios`)
+  - quickblox_sdk (from `.symlinks/plugins/quickblox_sdk/ios`)
+  - shared_preferences_ios (from `.symlinks/plugins/shared_preferences_ios/ios`)
+
+SPEC REPOS:
+  trunk:
+    - QuickBlox
+    - Quickblox-WebRTC
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  flutter_local_notifications:
+    :path: ".symlinks/plugins/flutter_local_notifications/ios"
+  quickblox_sdk:
+    :path: ".symlinks/plugins/quickblox_sdk/ios"
+  shared_preferences_ios:
+    :path: ".symlinks/plugins/shared_preferences_ios/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
+  flutter_local_notifications: 0c0b1ae97e741e1521e4c1629a459d04b9aec743
+  QuickBlox: 49d85c6e1782993fb2383001301b788a8d7dcad3
+  Quickblox-WebRTC: 162d2421d91cfb3d4f7e01f87e095633ca52bb1d
+  quickblox_sdk: 9ce8b6d99695835a8a3333dc7ac9acd49a44fb13
+  shared_preferences_ios: 548a61f8053b9b8a49ac19c1ffbc8b92c50d68ad
+
+PODFILE CHECKSUM: e51a806e7bc260e1bb46318c70bbe46e75b5bb1a
+
+COCOAPODS: 1.11.0

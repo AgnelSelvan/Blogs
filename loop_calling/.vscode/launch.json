@@ -1,0 +1,25 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "label": "Flutter-Launch-All",
+            "dependsOn": [
+              "Flutter-Launch-iOS",
+              "Flutter-Launch-Android",
+            ]
+          },
+          {
+            "label": "Flutter-Launch-iOS",
+            "type": "shell",
+            "command": "flutter run -d 'iPhone 12 Pro' "
+          },
+          {
+            "label": "Flutter-Launch-Android",
+            "type": "shell",
+            "command": "flutter run -d 'G' "
+          }
+    ]
+}
