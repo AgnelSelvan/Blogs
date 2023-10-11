@@ -32,4 +32,14 @@ class QuotesNotifier extends ChangeNotifier {
       }
     });
   }
+
+  void find() {
+    final result = realm.all<Quotes>();
+    print(result.length);
+  }
+
+  void query() {
+    final result = realm.query<Quotes>('authorName BEGINSWITH \$0', ["Use"]);
+    print(result.length);
+  }
 }

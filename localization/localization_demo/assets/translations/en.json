@@ -1,0 +1,4 @@
+{
+    "welcome_header": "Hello world!",
+    "hello_name": "Hello {userName}"
+}

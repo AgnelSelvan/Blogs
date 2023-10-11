@@ -120,7 +120,8 @@ class HomeScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          showAddQuoteDialog(context, null);
+          //   showAddQuoteDialog(context, null);
+          context.read<QuotesNotifier>().query();
         },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
