@@ -42,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text("Localization Demo"),
+        title: const Text("Localization Github Demo"),
       ),
       body: Center(
         child: Column(
